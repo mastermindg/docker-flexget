@@ -9,6 +9,13 @@ This fork shows an example of a modular config where all the values come from en
 ```
 docker create \
     --name=flexget \
+    -e WEBSERVER=yes \
+    -e INTERVAL=5 \
+    -e RSS="https://www.myrssfeed.com" \
+    -e TRANSMISSION_HOST="transmission" \
+    -e TRANSMISSION_PORT="9091" \
+    -e TRANSMISSION_USER="admin" \
+    -e TRANSMISSION_PASS="admin" \
     -e PGID=<gid> -e PUID=<uid> \
     -e WEB_PASSWD=yourhorriblesecret \
     -e TORRENT_PLUGIN=transmission \
