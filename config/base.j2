@@ -1,0 +1,25 @@
+{% if 'WEBSERVER' | env -%}web_server: {{ 'WEBSERVER' | env }}{% else -%}
+web_server: yes
+{%- endif %}
+
+{% if 'INTERVAL' | env -%}
+schedules:
+  - tasks: '*'
+    interval:
+      minutes: {{ 'INTERVAL' | env }}
+{% else -%}
+schedules:
+  - tasks: '*'
+    interval:
+      minutes: 5
+{%- endif %}
+
+tasks:
+  gp task:
+    rss: {{ 'RSS' | env }}
+    accept_all: yes
+    transmission:
+      host: {{ 'TRANSMISSION_HOST' | env }}
+      port: {{ 'TRANSMISSION_PORT' | env }}
+      username: {{ 'TRANSMISSION_USER' | env }}
+      password: {{ 'TRANSMISSION_PASS' | env }}

@@ -1,3 +1,5 @@
 #!/usr/bin/with-contenv bash
 
-python build.py
+touch config/config.yml
+yasha config/base.j2 --no-variable-file -o config/config.yml
+cat /config/config.yml

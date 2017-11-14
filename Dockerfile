@@ -11,8 +11,7 @@ RUN chmod -v +x \
 
 # Copy modular config
 ADD config /config
-ADD build.py .
-RUN pip install jinja2
+RUN pip install yasha
 
 # Ports and volumes.
 EXPOSE 5050/tcp
