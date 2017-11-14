@@ -9,5 +9,8 @@ RUN chmod -v +x \
     /etc/cont-init.d/*  \
     /etc/services.d/*/run
 
+ADD config.yml /config
+RUN chmod 777 /config/config.yml
+
 # Ports and volumes.
 EXPOSE 5050/tcp
