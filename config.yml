@@ -1,0 +1,16 @@
+web_server: ${WEBSERVER}
+
+schedules:
+  - tasks: '*'
+    interval:
+      minutes: ${INTERVAL}
+
+tasks:
+  gp task:
+    rss: ${RSS}
+    accept_all: yes
+    transmission:
+      host: ${TRANSMISSION_HOST}
+      port: ${TRANSMISSION_PORT}
+      username: ${TRANSMISSION_USER}
+      password: ${TRANSMISSION_PASS}

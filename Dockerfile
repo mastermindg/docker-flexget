@@ -11,4 +11,3 @@ RUN chmod -v +x \
 
 # Ports and volumes.
 EXPOSE 5050/tcp
-VOLUME /config

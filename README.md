@@ -1,25 +1,8 @@
-# cpoppema/docker-flexget
+# mastermindg/docker-flexget
 
 Read all about FlexGet [here](http://www.flexget.com/#Description).
 
-If you do not have a configuration already, you can look around starting off with something like this [config.yml](https://github.com/cpoppema/docker-flexget/blob/master/sample_config.yml):
-```
-web_server: yes
-
-schedules:
-  - tasks: '*'
-    interval:
-      minutes: 1
-
-tasks:
-  test task:
-    rss: http://myfavoritersssite.com/myfeed.rss
-    series:
-      - My Favorite Show
-```
-Put this file in your data/config folder as `config.yml`.
-
-For a much better FlexGet config.yml example take a look at the bottom of [this page](http://flexget.com/Cookbook/Series/SeriesPresetMultipleRSStoTransmission).
+This fork shows an example of a modular config where all the values come from environment variables. It's a basic config for now but will be expanded to encompass all of the available options. It's using transmission as the plugin for now.
 
 ## Usage
 
@@ -31,23 +14,29 @@ docker create \
     -e TORRENT_PLUGIN=transmission \
     -e FLEXGET_LOG_LEVEL=debug \
     -p 5050:5050 \
-    -v <path to data>:/config \
     -v <path to downloads>:/downloads \
-    cpoppema/docker-flexget
+    mastermindg/docker-flexget
 ```
 
 This container is based on phusion-baseimage with ssh removed. For shell access whilst the container is running do `docker exec -it flexget /bin/bash`.
 
 **Parameters**
 
+* `-e WEBSERVER` for the option to run the webserver
+* `-e INTERVAL` for the interval for check the RSS feed
+* `-e RSS` for the path to the rss feed
+* `-e TRANSMISSION_HOST` for the transmission host
+* `-e TRANSMISSION_PORT` for the transmission port
+* `-e TRANSMISSION_USER` for the transmission user
+* `-e TRANSMISSION_PASS` for the transmission password
 * `-e PGID` for GroupID - see below for explanation
 * `-e PUID` for UserID - see below for explanation
 * `-e WEB_PASSWD` for the Web UI password - see below for explanation
 * `-e TORRENT_PLUGIN` for the torrent plugin you need, e.g. "transmission" or "deluge"
 * `-e FLEXGET_LOG_LEVEL` for logging level - see below for explanation
 * `-p 5050` for Web UI port - see below for explanation
-* `-v /config` - Location of FlexGet config.yml (DB files will be created on startup and also live in this directory)
 * `-v /downloads` - location of downloads on disk
+
 
 **Torrent plugin: Transmission**
 
