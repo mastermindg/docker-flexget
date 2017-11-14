@@ -1,4 +1,4 @@
-web_server: ${WEBSERVER}
+web_server: {{ "yes" | env_override('WEBSERVER') }}
 
 schedules:
   - tasks: '*'

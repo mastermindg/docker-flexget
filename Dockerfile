@@ -9,8 +9,10 @@ RUN chmod -v +x \
     /etc/cont-init.d/*  \
     /etc/services.d/*/run
 
-ADD config.yml /config
-RUN chmod 777 /config/config.yml
+# Copy modular config
+ADD config /config
+ADD build.py .
+RUN pip install jinja2
 
 # Ports and volumes.
 EXPOSE 5050/tcp
