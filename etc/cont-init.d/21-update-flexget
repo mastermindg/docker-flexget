@@ -1,7 +1,22 @@
 #!/usr/bin/with-contenv bash
 
-pip install -U pip
+pip install -U pip > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+	echo "Successfully updated pip"
+else
+	echo "Pip failed to update"
+fi
 # Make sure to install setuptools version >=36 to avoid a race condition, see:
 # https://github.com/pypa/setuptools/issues/951
-pip install -U setuptools>=36
-pip install -U flexget
+pip install -U setuptools>=36 > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+	echo "Successfully updated setuptools"
+else
+	echo "Setuptools failed to update"
+fi
+pip install -U flexget > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+	echo "Successfully installed flexget"
+else
+	echo "Flexget failed to install"
+fi

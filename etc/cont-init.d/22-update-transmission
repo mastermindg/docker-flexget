@@ -1,5 +1,10 @@
 #!/usr/bin/with-contenv bash
 
 if [ -z "$TORRENT_PLUGIN" ] || [[ "$TORRENT_PLUGIN" == *"transmission"* ]]; then
-    pip install -U transmissionrpc
+    pip install -U transmissionrpc > /dev/null 2>&1
+if [ $? -eq 0 ]; then
+	echo "Successfully updated transmission"
+else
+	echo "Transmission failed to update"
+fi
 fi
